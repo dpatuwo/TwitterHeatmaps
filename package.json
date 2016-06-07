@@ -1,0 +1,16 @@
+{
+  "name": "twitterheatmap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chuck-norris-api": "^1.0.8",
+    "googlemaps": "^1.6.0",
+    "twitter": "^1.3.0"
+  }
+}
