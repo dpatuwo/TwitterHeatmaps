@@ -1,7 +1,17 @@
-var twitter = require('Twitter')
-var maps = require('googlemaps')
+var Twitter = require('Twitter')
+var GoogleMapsAPI = require('googlemaps')
 var cn = require('chuck-norris-api')
-var cowsay
+var cowsay = require('cowsay')
+var pry = require('pryjs')
+var bootstrap = require('bootstrap')
+var express = require('express')
+var app = express()
+var mustacheExpress = require('mustache-express')
+
+app.engine('html',mustacheExpress())
+app.set('view engine','html')
+app.set('views',__dirname+'/html')
+app.use(express.static(__dirname+'public'))
 
 var client = new Twitter({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -25,3 +35,11 @@ function talkCow(text){
     console.log(stdout)
   });
 }
+
+app.listen(3000, function(){
+  console.log('App is listening on port 3000!')
+})
+
+app.get('/', function(req, res){
+  res.send("Hello World!")
+})
