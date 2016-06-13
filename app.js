@@ -10,12 +10,17 @@ var express = require('express')
 var app = express()
 var mustacheExpress = require('mustache-express')
 
-app.use(express.bodyParser());
-
 app.engine('html',mustacheExpress())
 app.set('view engine','html')
 app.set('views',__dirname+'/html')
 app.use(express.static(__dirname+'/public'))
+
+// var client = new Twitter({
+//   consumer_key: process.env.TWITTER_CONSUMER_KEY,
+//   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+//   access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+//   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+// });
 
 var T = new Twit({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -46,8 +51,9 @@ app.listen(3000, function(){
 function getData(){
   var tweets = []
   var loc = []
-  T.get('search/tweets', { q: '#shakeshack since:2011-07-11', count: 50 }, function(err, data, response) {
-    // console.log(data)
+  T.get('search/tweets', { q: '#ShakeShack' count: 1000 }, function(err, data, response) {
+    console.log(data)
+    eval(pry.it)
     // var tweets = []
     for(var i = 0; i < data.statuses.length; ++i){
       if(data.statuses[i].geo != null){
@@ -64,18 +70,6 @@ function getData(){
   })
   return loc;
 }
-
-$("form").submit(function(e) {
-    e.preventDefault(); // Prevents the page from refreshing
-    var $this = $(this); // `this` refers to the current form element
-    $.post(
-        $this.attr("action"), // Gets the URL to sent the post to
-        $this.serialize(), // Serializes form data in standard format
-        function(data) { /** code to handle response **/ },
-        "json" // The format the response should be in
-    );
-});
-
 
 app.get('/', function(req, res){
   //eval(pry.it)

@@ -39,22 +39,13 @@
 
   <body>
     <!-- <header> -->
-      <h1>Twitter Heatmaps</h1>
-      <form>
+<!--       <h1>Twitter Heatmaps</h1>
+      <form float: right>
         <input type="text" id="tweet" placeholder="Type hashtag here" />
         <input type="submit" value="Submit" id="btnSend" />
-      </form>
-    <!-- </header> -->
-    <div id="floating-panel">
-      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-      <button onclick="changeGradient()">Change gradient</button>
-      <button onclick="changeRadius()">Change radius</button>
-      <button onclick="changeOpacity()">Change opacity</button>
-    </div>
-    <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdqfq93KXEc_f4VwP6Rsl0IKrGlVO4B4o&libraries=visualization"></script>
-
-    <script>
+      </form> -->
+      <!-- </header> -->
+ <script>
 
       // This example requires the Visualization library. Include the libraries=visualization
       // parameter when you first load the API. For example:
@@ -106,8 +97,18 @@
         heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
       }
 
-      // Heatmap data: 500 Points
       function getPoints() {
         return {{ loc }}
       }
     </script>
+
+    <div method="post" action="/" id="floating-panel">
+      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+      <button onclick="changeGradient()">Change gradient</button>
+      <button onclick="changeRadius()">Change radius</button>
+      <button onclick="changeOpacity()">Change opacity</button>
+    </div>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdqfq93KXEc_f4VwP6Rsl0IKrGlVO4B4o&libraries=visualization"></script>
+
+
