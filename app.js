@@ -51,9 +51,9 @@ app.listen(3000, function(){
 function getData(){
   var tweets = []
   var loc = []
-  T.get('search/tweets', { q: '#ShakeShack' count: 1000 }, function(err, data, response) {
+  T.get('search/tweets', { q: '#ShakeShack', count: 10000 }, function(err, data, response) {
     console.log(data)
-    eval(pry.it)
+    //eval(pry.it/)
     // var tweets = []
     for(var i = 0; i < data.statuses.length; ++i){
       if(data.statuses[i].geo != null){
@@ -66,14 +66,18 @@ function getData(){
     }
     // loc.splice(-1,1)
     console.log(loc)
-    //eval(pry.it)
+    eval(pry.it)
   })
-  return loc;
+  setTimeout(function(){  return loc; }, 1000);
+
 }
 
 app.get('/', function(req, res){
   //eval(pry.it)
   var loc = getData()
+  console.log('-----')
+  console.log(loc)
+  console.log('-----')
   res.render('index.html', loc)
 })
 
